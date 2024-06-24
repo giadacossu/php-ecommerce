@@ -1,14 +1,11 @@
-
 <?php
-
-
 
 
 $serverName = "PCGIADA\SQLEXPRESS"; 
 $connectionOptions = [
     "Database" => "ecommerce",
-    "UID" => "", // Inserisci il tuo UID qui
-    "PWD" => ""  // Inserisci la tua password qui
+    "UID" => "", 
+    "PWD" => ""  
 ];
 
 // Create connection

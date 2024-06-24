@@ -12,7 +12,7 @@ $page=isset($_GET["page"]) ? $_GET["page"] : 'dashboard';//
         <div class="row"> 
             <div class="col-9">
                 
-            <?php include ROOT_PATH .'shop/pages/' . $page.'.php';?>
+            <?php include ROOT_PATH .'shop/pages/' .$page.'.php';?>
 
             </div>
 

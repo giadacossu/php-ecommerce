@@ -1,6 +1,11 @@
 <?php
 
-define('ROOT_URL', 'http://127.0.0.1/progetti/e-commerce/');
-define('ROOT_PATH','C:\\xampp\\htdocs\\progetti\\e-commerce\\');
+
+require_once '../inc/config.php';
+
+require_once ROOT_PATH .'inc/globals.php';
+require_once ROOT_PATH .'inc/function.php';
+require_once ROOT_PATH .'classes/DB.php';
+require_once ROOT_PATH .'classes/Products.php';
 
 ?>
