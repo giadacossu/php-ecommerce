@@ -1,1 +1,12 @@
 /*style*/
+/*cart*/
+
+.carts-button span{/*prendo lo span dentro la classe*/
+width: 50px;
+text-align: center;
+border: 1px solid ;
+}
+
+.cart-total{
+    font-size: 20;
+}

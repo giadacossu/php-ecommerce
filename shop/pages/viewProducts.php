@@ -7,6 +7,21 @@ if(!isset($_GET['id'])){
     echo "<script>location.href='".ROOT_URL."'</script>";
 exit;
 }
+
+if(isset($_POST['addToCart'])){
+  $productId= htmlspecialchars(trim($_POST['id']));
+  //addto cart logic 
+  $cm= new CartManager();
+  $cartId=$cm->getCurrentCartId();
+
+  //agiungi al carrello cartid  il prodotto productid
+  $cm->addToCart($productId,$cartId);
+
+
+  ///stampato un messaggio per l'utente 
+}
+
+
 $id=htmlspecialchars(trim($_GET['id']));//toglie gli spazi trim // special trim pulisce il codice inserito 
 echo($id);
 

@@ -1,5 +1,5 @@
 </main>
-<footer class="bg-dark">
+<footer class="bg-primary">
     <hr>
     <p class="container text-light">Copyright &copy;2024</p>
 </footer>

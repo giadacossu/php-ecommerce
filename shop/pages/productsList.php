@@ -1,8 +1,20 @@
 <?php
 if(!defined('ROOT_URL')){//se non è passato per l'index non verra definito il root url cio avviene se l'utente cerca di manipolare l'url
-die
+die;
 }
-echo 'products list';
+
+if(isset($_POST['addToCart'])){
+    //add carrello
+    $productId= htmlspecialchars(trim($_POST['id']));
+    //addto cart logic 
+    $cm= new CartManager();
+    $cartId=$cm->getCurrentCartId();
+  
+    //agiungi al carrello cartid  il prodotto productid
+    $cm->addToCart($productId,$cartId);
+echo 'prodotto aggiunto';  
+}
+
 
 $productM = new ProductsManager();
 $products = $productM->getAll();
@@ -24,7 +36,7 @@ $products = $productM->getAll();
                     <h5 class="card-title"><?php echo $product->name ?></h5>
                     <p class="card-text"><?php echo $product->description ?>.</p>
                     <p class="card-text"><?php echo $product->price ?></p>
-                    <a href="<?php echo ROOT_URL . 'shop?page=viewProducts&id='. $product->id?>" class="btn btn-primary">Go somewhere</a>
+                    <a href="<?php echo ROOT_URL . 'shop?page=viewProducts&id='. $product->id?>" class="btn btn-primary">vedi il prodotto</a>
                     <form method="post"  >
                         <input type="hidden" name="id" value="<?php echo $product->id; ?>">
                        

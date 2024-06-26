@@ -128,7 +128,10 @@ class DB
         }
     }
 
-
+public function execute($sql){
+   $stmt=$this->pdo->prepare($sql);
+   $stmt->execute();
+}
     
 }
 
