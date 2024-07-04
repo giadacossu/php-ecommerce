@@ -52,6 +52,44 @@ class CartManager extends DBManager
             );
         }
     }
+    public function removeToCart($productId, $cartId)
+    {
+        $quantity = 0;
+        $result = $this->db->query("SELECT * FROM cart_item WHERE cart_id= $cartId AND products_id= $productId");
+        $cartItemId=$result[0]['id'];
+        if (count($result) > 0) {
+            $quantity = $result[0]['quantity'];
+        }
+        $quantity--;
+        if ($result < 0) {
+            $this->db->execute("UPDATE cart_item SET quantity = $quantity  WHERE cart_id= $cartId AND products_id= $productId");
+        } else {
+            $cartItemMgr = new CartItemManager();
+            $cartItemMgr->delete($cartItemId);
+
+           
+        }
+    }
+    public function getCartTotal($cartId)
+    {
+        $result =  $this->db->query("SELECT SUM(quantity) as num_products, SUM(quantity* PRICE) as total FROM cart_item INNER JOIN products ON cart_item.products_id = products.id WHERE cart_id =$cartId;");
+        //var_dump($result[0]);
+        return $result[0]; // perche query restituisce un array
+    }
+
+    public function getCartItems($cartId)
+    {
+        return $this->db->query(("	SELECT products.name AS name 
+	, products.description AS description 
+	, products.price AS single_price 
+	, cart_item.quantity AS quantity
+	,products.price *cart_item.quantity AS total_price
+    , products.id as id
+	FROM cart_item INNER JOIN products  ON  cart_item.products_id = products.id WHERE cart_item.cart_id =  $cartId"));
+    }
+
+
+
 
     //private method
     private function initializeClientIdFromSession()

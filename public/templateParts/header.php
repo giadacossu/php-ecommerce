@@ -38,25 +38,39 @@
                     <li class="nav-item">
                         <a href='<?php echo ROOT_URL; ?>shop?page=cart' class="nav-link" w-3>carrello
                             <i class="bi bi-cart "> </i>
-                            <span class="badge rounded-pill text-bg-success">1</span>
+                            <span class="badge rounded-pill text-bg-success js-totCartsItems"></span>
                         </a>
                     </li>
 
                 </ul>
             </div>
 
+            <?php if(!$loggedInUser):?>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Area riservata
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=login">Login</a></li>
+                    <?php endif;?>
+                   
                 </ul>
-
+                
             </div>
-        </div>
+            
+            <?php if($loggedInUser):?>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php echo $loggedInUser['email'];?>
+                    </button>
+                    <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=logout">Logout</a></li>
+                            
+                        </ul>
+                        
+                    </div>
+                    <?php endif;?>
+                </div>
     </nav>
 </header>
 
