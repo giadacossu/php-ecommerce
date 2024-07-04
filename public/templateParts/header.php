@@ -45,32 +45,46 @@
                 </ul>
             </div>
 
-            <?php if(!$loggedInUser):?>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Area riservata
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=login">Login</a></li>
-                    <?php endif;?>
-                   
-                </ul>
-                
-            </div>
-            
-            <?php if($loggedInUser):?>
+            <?php if (!$loggedInUser) : ?>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php echo $loggedInUser['email'];?>
+                        Area riservata
                     </button>
                     <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=logout">Logout</a></li>
-                            
-                        </ul>
-                        
-                    </div>
-                    <?php endif;?>
+                        <li><a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=login">Login</a></li>
+                    <?php endif; ?>
+
+                    </ul>
+
                 </div>
+
+                <?php if ($loggedInUser) : ?>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php echo $loggedInUser->email; ?>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=logout">Logout</a></li>
+
+                        </ul>
+
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($loggedInUser && $loggedInUser->is_admin) : ?>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           Amministrazione
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin">dashboard</a></li>
+
+                        </ul>
+
+                    </div>
+                <?php endif; ?>
+
+        </div>
     </nav>
 </header>
 
